@@ -1,0 +1,15 @@
+node_modules/
+lib/
+coverage/
+research/bundles/
+tmp/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+
+# Local sprite iterations retained for comparison; v6 is the release asset.
+assets/whale/whale-animation-v3.png
+assets/whale/whale-animation-v4.png
+assets/whale/whale-animation-v5.webp
+assets/whale/whale-animation-v5-contact-sheet.png
