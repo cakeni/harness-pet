@@ -1,7 +1,8 @@
 node_modules/
-lib/
+/lib/
 coverage/
 research/bundles/
+research/reference/
 tmp/
 *.tsbuildinfo
 .env

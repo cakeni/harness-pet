@@ -123,11 +123,14 @@ All tool-name→state mapping lives in ONE table inside the adapter (easy to ext
 - Local profiles normally live under `$DSH_HOME/profiles/<profile>` (for
   example `$DSH_HOME/profiles/web`).
 
-## 6. Local reference materials (workspace-local copies)
+## 6. Official reference materials used for implementation
 
-This workspace carries read-only copies of the official client API type
-definitions and the live client bundles, so everything is readable from inside
-the workspace sandbox:
+The adapter was implemented against the official client API type definitions
+from the installed `@deepseek-ai/dsh-*` packages. A development workspace may
+carry read-only copies under `research/reference/` and live bundles under
+`research/bundles/`, but both directories are excluded from the public repository
+and published package. They can be regenerated from the locally installed DSH
+dependencies when compatibility needs to be re-verified:
 
 ```
 research/
