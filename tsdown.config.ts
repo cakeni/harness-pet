@@ -1,6 +1,6 @@
 import { defineConfig } from 'tsdown'
 
-const moduleId = 'harness-whale'
+const moduleId = 'harness-pet'
 
 const entry = { client: 'src/client/index.ts' }
 
@@ -11,14 +11,14 @@ export default defineConfig([
     clean: true,
     dts: false,
     format: 'iife',
-    globalName: 'HarnessWhale',
+    globalName: 'HarnessPet',
     platform: 'browser',
     target: 'es2022',
     loader: { '.png': 'base64', '.webp': 'base64' },
     sourcemap: true,
     outputOptions: { entryFileNames: '[name].js' },
     banner: `window.__ModuleLoader__.load({ id: ${JSON.stringify(moduleId)}, factory: (require) => {`,
-    footer: 'return HarnessWhale; }});',
+    footer: 'return HarnessPet; }});',
   },
   {
     entry,

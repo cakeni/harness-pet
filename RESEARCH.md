@@ -1,4 +1,4 @@
-# Harness Whale — Reconnaissance Findings (RESEARCH)
+# Harness Pet — Reconnaissance Findings (RESEARCH)
 
 Pre-implementation research on how DeepSeek Harness works, so the implementer does
 not need to re-derive it. **All findings below were verified against the actually
@@ -37,7 +37,7 @@ packages share this version).
 
 ## 2. How a third-party plugin registers (the template)
 
-A plugin package (`harness-whale`) needs:
+A plugin package (`harness-pet`) needs:
 
 1. `package.json`:
    - `"dsh": { "bundle": { "patch": "./cordis.patch.yml" }, "client": { "inject": [...], "platform": "web" } }`
@@ -45,12 +45,12 @@ A plugin package (`harness-whale`) needs:
    - `peerDependencies` on the `@deepseek-ai/dsh-*` packages it consumes
      (react `^18.2.0` if used).
 2. `cordis.patch.yml`: a loader patch inserting one host row:
-   `- insert: [ { id: whale-pet, name: 'harness-whale' } ]`.
+   `- insert: [ { id: harness-pet, name: 'harness-pet' } ]`.
    The `dsh-web-app` bundle patch documents this: "`dsh.client` rows are the
    browser roster the modules node half scans into `window.__DSH_BOOT__`".
-3. Install: `dsh plugin --profile web add harness-whale` (npm) or
-   `dsh plugin --profile web add github:cakeni/harness-whale` (git) or
-   `dsh plugin --profile web add link:../harness-whale` (dev).
+3. Install: `dsh plugin --profile web add harness-pet` (npm) or
+   `dsh plugin --profile web add github:cakeni/harness-pet` (git) or
+   `dsh plugin --profile web add link:../harness-pet` (dev).
 
 Template references (readable examples in the local npm checkout, see §6):
 `@deepseek-ai/dsh-client-ui-plan` (smallest client plugin: package.json shape,
@@ -111,10 +111,10 @@ All tool-name→state mapping lives in ONE table inside the adapter (easy to ext
   cwd = profile dir.
 - After a successful pnpm run, it **reconciles** `dsh.profile.bundles`: any
   installed dependency whose package declares `dsh.bundle.patch` joins the bundle
-  list automatically; removals drop out. → `harness-whale` must declare
+  list automatically; removals drop out. → `harness-pet` must declare
   `dsh.bundle.patch` to become an active layer.
 - Relative path specs (`.`, `../x`, `file:`, `link:`) are anchored to the
-  invoking directory — so `dsh plugin --profile web add link:../harness-whale`
+  invoking directory — so `dsh plugin --profile web add link:../harness-pet`
   run from the project parent works as expected.
 - Git-hosted deps with a `prepare` build script are blocked by pnpm until the
   profile's `pnpm-workspace.yaml` adds the exact key under `allowBuilds`; the CLI
@@ -155,12 +155,12 @@ and are not needed to build or test the plugin.
 
 ## 7. Verification procedure (after the plugin builds)
 
-1. `dsh plugin --profile web add link:../harness-whale` (from the repo parent).
+1. `dsh plugin --profile web add link:../harness-pet` (from the repo parent).
 2. **Restart the `dsh web` process** (install changes require a host restart to
    re-scan the plugin roster; code-only rebuilds just need a page refresh).
 3. Reload `http://127.0.0.1:3080`, then in DevTools:
-   - `window.__DSH_BOOT__.entries` includes `harness-whale`;
-   - `fetch('/plugins/harness-whale/client.js')` → 200;
+   - `window.__DSH_BOOT__.entries` includes `harness-pet`;
+   - `fetch('/plugins/harness-pet/client.js')` → 200;
    - pet renders bottom-right; console shows no errors.
 4. Dev loop: `pnpm bundle` → refresh page (link install serves `lib/client.js`
    from the linked source dir, so rebuild + refresh is sufficient).
@@ -175,5 +175,5 @@ and are not needed to build or test the plugin.
 - The pet should create its own floating root (high z-index, bottom-right,
   clamped to viewport) rather than relying on a specific slot seat; using the
   slot system is optional.
-- npm name `harness-whale` was available at research time; GitHub username from
+- npm name `harness-pet` was available at research time; GitHub username from
   local git config is `cakeni` (verify with the user).

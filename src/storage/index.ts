@@ -1,7 +1,7 @@
 import { isPetStatus, type PetStatus } from '../status.js'
 import { isUiLanguage, type UiLanguage } from '../i18n.js'
 
-export const STORAGE_KEY = 'harness-whale:settings'
+export const STORAGE_KEY = 'harness-pet:settings'
 
 export interface StorageLike {
   getItem(key: string): string | null

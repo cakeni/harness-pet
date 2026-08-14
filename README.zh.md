@@ -9,7 +9,7 @@
 ![Harness Pet 动画状态预览](./assets/whale/whale-animation-v6-contact-sheet.png)
 
 ```sh
-dsh plugin --profile web add github:cakeni/harness-whale
+dsh plugin --profile web add github:cakeni/harness-pet
 ```
 
 [English](./README.md)
@@ -38,20 +38,20 @@ Harness Pet 是开源的 DSH 原生网页插件，不是浏览器扩展。它在
 npm 包名预留给后续发布；npm 包正式发布前，请使用下面的 Git 或本地 link 安装方式。
 
 ```sh
-dsh plugin --profile web add harness-whale
+dsh plugin --profile web add harness-pet
 ```
 
 ### Git
 
 ```sh
-dsh plugin --profile web add github:cakeni/harness-whale
+dsh plugin --profile web add github:cakeni/harness-pet
 ```
 
 Git 依赖会执行本包的 `prepare` 构建。如果 pnpm 阻止构建，请把 CLI 输出的准确包名加入 profile 的 `pnpm-workspace.yaml`，例如：
 
 ```yaml
 allowBuilds:
-  harness-whale: true
+  harness-pet: true
 ```
 
 然后重新执行安装。profile 通常位于 `$DSH_HOME/profiles/web`。
@@ -61,13 +61,13 @@ allowBuilds:
 在仓库的父目录执行：
 
 ```sh
-dsh plugin --profile web add link:../harness-whale
+dsh plugin --profile web add link:../harness-pet
 ```
 
 开发时重建并刷新页面：
 
 ```sh
-cd harness-whale
+cd harness-pet
 pnpm bundle
 ```
 
@@ -135,7 +135,7 @@ pnpm test
 pnpm bundle
 ```
 
-构建产物必须以 `window.__ModuleLoader__.load` 注册 `harness-whale`，并从 factory 导出 `{ apply, inject }`。
+构建产物必须以 `window.__ModuleLoader__.load` 注册 `harness-pet`，并从 factory 导出 `{ apply, inject }`。
 
 自动测试覆盖状态识别和优先级、success 迁移与超时、未知信号退化、损坏存储、单例复用，以及订阅/定时器清理。真实 Harness 内加载、拖动、视觉动画、SPA 导航和长时间泄漏检查仍需人工浏览器验收。
 
@@ -143,8 +143,8 @@ pnpm bundle
 
 自行安装并重启 `dsh web` 后：
 
-1. 确认 `window.__DSH_BOOT__.entries` 包含 `harness-whale`。
-2. 确认 `/plugins/harness-whale/client.js` 返回 HTTP 200。
+1. 确认 `window.__DSH_BOOT__.entries` 包含 `harness-pet`。
+2. 确认 `/plugins/harness-pet/client.js` 返回 HTTP 200。
 3. 确认鲸鱼及其上方卡片出现，卡片显示最新本地问题和流式/最终回复，控制台无报错，各 Debug State 有明显区别。
 4. 打开灰色跟进输入框，发送一条测试消息并确认它进入当前 Harness 会话；同时确认发送失败时草稿仍保留并显示错误。
 5. 测试拖动、刷新后位置记忆、启用/关闭、大小、透明度和重置位置。

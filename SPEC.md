@@ -1,16 +1,16 @@
-# Harness Whale — 开发规格书 v2（SPEC）
+# Harness Pet — 开发规格书 v2（SPEC）
 
 > 供实现者（人或 AI 编码代理）阅读。目标产物：一个开源的 DeepSeek Harness 原生网页宠物插件。
 
 ## 1. 项目身份
 
-- 项目名：**Harness Whale**
+- 项目名：**Harness Pet**
 - 标语：`A tiny whale that lives inside DeepSeek Harness.`
 - 定位：**DeepSeek Harness 的非官方社区宠物**。所有公开材料（README、包描述、界面）必须声明：
   > This is an unofficial community project. Not affiliated with, endorsed by, or maintained by DeepSeek.
   > DeepSeek and related marks belong to their respective owners.
-- 仓库：`github.com/cakeni/harness-whale`（用户名以用户确认为准）
-- npm 包名：**`harness-whale`**（未占用；建议尽早占名）
+- 仓库：`github.com/cakeni/harness-pet`（用户名以用户确认为准）
+- npm 包名：**`harness-pet`**（未占用；建议尽早占名）
 - License：**MIT**
 - 文档双语：`README.md`（英文主文档）+ `README.zh.md`（中文）
 - README 首屏必须是项目名 + 标语 + 非官方声明 + 安装命令
@@ -24,12 +24,12 @@
   - `dsh.client: { inject: [...], platform: "web" }` —— 浏览器半边注册
   - `exports["./client"]` —— 客户端产物入口
   - peerDependencies 锁定 `@deepseek-ai/dsh-*@^0.1.0-rc.6`（当前生态版本 0.1.0-rc.6）
-- `cordis.patch.yml`：插入一行宿主注册（如 `id: whale-pet / name: 'harness-whale'`），宿主自动把插件编入 `window.__DSH_BOOT__` 并托管 `/plugins/harness-whale/client.js`
+- `cordis.patch.yml`：插入一行宿主注册（如 `id: harness-pet / name: 'harness-pet'`），宿主自动把插件编入 `window.__DSH_BOOT__` 并托管 `/plugins/harness-pet/client.js`
 - 插件浏览器半边导出 `{ apply(ctx), inject }`，通过 `ctx` 访问官方服务
 - 三种安装方式全部写入 README：
-  - npm：`dsh plugin --profile web add harness-whale`
-  - Git：`dsh plugin --profile web add github:cakeni/harness-whale`（README 注明：带 `prepare` 构建脚本的 git 依赖需要在 profile 的 `pnpm-workspace.yaml` 加 `allowBuilds`）
-  - 开发：`dsh plugin --profile web add link:../harness-whale`
+  - npm：`dsh plugin --profile web add harness-pet`
+  - Git：`dsh plugin --profile web add github:cakeni/harness-pet`（README 注明：带 `prepare` 构建脚本的 git 依赖需要在 profile 的 `pnpm-workspace.yaml` 加 `allowBuilds`）
+  - 开发：`dsh plugin --profile web add link:../harness-pet`
 
 **明确不做**：浏览器扩展、修改 Harness 本体、登录、云同步、商店、社交功能、MCP、后端服务、telemetry、analytics、等级/XP 系统。
 
@@ -90,7 +90,7 @@ Debug State 手动切换 idle / thinking / working / success / error，并支持
 ## 9. 工程结构
 
 ```
-harness-whale/
+harness-pet/
   package.json
   cordis.patch.yml
   tsconfig.json
@@ -125,14 +125,14 @@ harness-whale/
 - 订阅清理单测（dispose 后无泄漏）
 
 **手动验收清单（如实标注需人验）**：
-- 插件可加载（`__DSH_BOOT__` 含 harness-whale；`/plugins/harness-whale/client.js` 返回 200）
+- 插件可加载（`__DSH_BOOT__` 含 harness-pet；`/plugins/harness-pet/client.js` 返回 200）
 - 宠物注入、拖拽记忆、面板设置生效、Debug State 生效
 - reduced-motion 生效
 - SPA 路由切换不失效；刷新不重复注入；长时间运行无订阅/observer 泄漏
 
 ## 11. 开发与发布流程
 
-- 开发环：`dsh plugin --profile web add link:../harness-whale` → `pnpm bundle` 重建 → 刷新页面验证（link 指向源码目录，重建即生效）
+- 开发环：`dsh plugin --profile web add link:../harness-pet` → `pnpm bundle` 重建 → 刷新页面验证（link 指向源码目录，重建即生效）
 - 注意：**修改安装（add/remove）后需重启 `dsh web` 进程**，宿主才会重新扫描插件清单
 - 发布：本地 review → 用户确认 → 由用户手动 `npm publish` + GitHub 建仓 push。**实现者不得 commit/push/publish**
 

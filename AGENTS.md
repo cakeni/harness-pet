@@ -1,6 +1,6 @@
 # AGENTS.md — instructions for AI coding agents working on this repository
 
-You are implementing **Harness Whale**, an unofficial community pet for
+You are implementing **Harness Pet**, an unofficial community pet for
 DeepSeek Harness, as a native DSH web plugin (NOT a browser extension).
 
 ## Read first
@@ -43,11 +43,11 @@ pnpm bundle         # tsdown → lib/client.js (+ node half if any)
 ## Dev loop (on the user's machine)
 
 - Install into the live profile from the repo's parent directory:
-  `dsh plugin --profile web add link:../harness-whale`
+  `dsh plugin --profile web add link:../harness-pet`
 - After changing installation (add/remove plugins), the `dsh web` process must be
   restarted. Code-only rebuilds just need a page refresh.
 - Verify in the browser console: `window.__DSH_BOOT__.entries` contains
-  `harness-whale`; `fetch('/plugins/harness-whale/client.js')` returns 200.
+  `harness-pet`; `fetch('/plugins/harness-pet/client.js')` returns 200.
 
 ## Honesty rules
 

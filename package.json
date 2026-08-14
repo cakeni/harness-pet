@@ -1,5 +1,5 @@
 {
-  "name": "harness-whale",
+  "name": "harness-pet",
   "version": "0.1.0",
   "description": "Harness Pet is an unofficial community project. Not affiliated with, endorsed by, or maintained by DeepSeek. A tiny whale for DeepSeek Harness.",
   "type": "module",
@@ -9,7 +9,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cakeni/harness-whale.git"
+    "url": "git+https://github.com/cakeni/harness-pet.git"
   },
   "exports": {
     ".": {

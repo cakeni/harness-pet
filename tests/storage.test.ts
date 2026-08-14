@@ -26,21 +26,21 @@ describe('settings storage', () => {
 
   it('falls back safely for corrupt JSON and invalid values', () => {
     const corrupt = new MemoryStorage()
-    corrupt.setItem('harness-whale:settings', '{broken')
+    corrupt.setItem('harness-pet:settings', '{broken')
     expect(loadSettings(corrupt)).toEqual(DEFAULT_SETTINGS)
 
     const invalid = new MemoryStorage()
-    invalid.setItem('harness-whale:settings', JSON.stringify({ size: -5, opacity: 7, position: { x: 'nope' } }))
+    invalid.setItem('harness-pet:settings', JSON.stringify({ size: -5, opacity: 7, position: { x: 'nope' } }))
     expect(loadSettings(invalid)).toEqual(DEFAULT_SETTINGS)
   })
 
   it('uses English for old or invalid language settings', () => {
     const oldSettings = new MemoryStorage()
-    oldSettings.setItem('harness-whale:settings', JSON.stringify({ enabled: false }))
+    oldSettings.setItem('harness-pet:settings', JSON.stringify({ enabled: false }))
     expect(loadSettings(oldSettings).language).toBe('en-US')
 
     const invalidLanguage = new MemoryStorage()
-    invalidLanguage.setItem('harness-whale:settings', JSON.stringify({ language: 'fr-FR' }))
+    invalidLanguage.setItem('harness-pet:settings', JSON.stringify({ language: 'fr-FR' }))
     expect(loadSettings(invalidLanguage).language).toBe('en-US')
   })
 })

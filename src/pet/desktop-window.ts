@@ -24,7 +24,7 @@ type DesktopCapableWindow = Window & {
 const DESKTOP_STYLE = `
 html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: transparent; }
 body { background: radial-gradient(circle at 50% 68%, rgba(231, 247, 253, .96), rgba(249, 253, 255, .96)); }
-#harness-whale-root { position: fixed !important; inset: 0 !important; width: 100vw !important; height: 100vh !important; }
+#harness-pet-root { position: fixed !important; inset: 0 !important; width: 100vw !important; height: 100vh !important; }
 .hw-pet { left: 50% !important; top: auto !important; right: auto !important; bottom: 12px !important; transform: translateX(-50%); }
 .hw-dialog { left: 12px !important; top: 12px !important; right: 12px !important; bottom: auto !important; width: auto !important; transform: none !important; }
 .hw-dialog::after { left: 50% !important; top: auto !important; bottom: -8px !important; transform: translateX(-50%) rotate(45deg) !important; }

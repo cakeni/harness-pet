@@ -20,8 +20,8 @@ export interface WhalePetOptions {
 }
 
 const STYLE = `
-#harness-whale-root { position: fixed; inset: 0; z-index: 700; pointer-events: none; font: 13px/1.4 system-ui, sans-serif; color: #18364a; }
-#harness-whale-root * { box-sizing: border-box; }
+#harness-pet-root { position: fixed; inset: 0; z-index: 700; pointer-events: none; font: 13px/1.4 system-ui, sans-serif; color: #18364a; }
+#harness-pet-root * { box-sizing: border-box; }
 .hw-pet { position: fixed; margin: 0; padding: 0; border: 0; border-radius: 42%; background: transparent; cursor: grab; pointer-events: auto; touch-action: none; filter: drop-shadow(0 8px 12px rgba(14, 64, 91, .18)); }
 .hw-pet:active { cursor: grabbing; }
 .hw-pet:focus-visible { outline: none; filter: drop-shadow(0 8px 12px rgba(14, 64, 91, .18)) drop-shadow(0 0 2px #2c95c5); }
@@ -317,9 +317,9 @@ export function createWhalePet(options: WhalePetOptions = {}): WhalePet {
   let disposed = false
 
   const root = document.createElement('div')
-  root.id = 'harness-whale-root'
+  root.id = 'harness-pet-root'
   const style = document.createElement('style')
-  style.dataset.plugin = 'harness-whale'
+  style.dataset.plugin = 'harness-pet'
   style.textContent = STYLE
 
   const pet = document.createElement('button')

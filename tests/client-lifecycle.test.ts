@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
-import { startHarnessWhale } from '../src/client/index.js'
+import { startHarnessPet } from '../src/client/index.js'
 import type { HarnessContext, SignalSnapshot, SnapshotSource } from '../src/adapters/deepseek-harness.js'
 import type { WhalePetOptions } from '../src/pet/index.js'
 
@@ -38,7 +38,7 @@ describe('client lifecycle', () => {
     }
     const pet = { setStatus: vi.fn(), dispose: vi.fn() }
     let createOptions: WhalePetOptions | undefined
-    const lifecycle = startHarnessWhale(context, (options) => {
+    const lifecycle = startHarnessPet(context, (options) => {
       createOptions = options
       return pet
     })

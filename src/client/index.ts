@@ -15,7 +15,7 @@ import { acquireWhaleSingleton, type DisposableWhale } from '../storage/singleto
 
 export const inject = ['sessions', 'connection']
 
-export function startHarnessWhale(
+export function startHarnessPet(
   context: HarnessContext,
   createPet: (options: WhalePetOptions) => WhalePet = createWhalePet,
 ): DisposableWhale {
@@ -59,7 +59,7 @@ export function startHarnessWhale(
 export function apply(ctx: ClientContext): void {
   if (typeof window === 'undefined' || typeof document === 'undefined') return
   ctx.effect(() => {
-    const lease = acquireWhaleSingleton(window, () => startHarnessWhale(ctx as unknown as HarnessContext))
+    const lease = acquireWhaleSingleton(window, () => startHarnessPet(ctx as unknown as HarnessContext))
     return lease.release
-  }, 'harness-whale: client lifecycle')
+  }, 'harness-pet: client lifecycle')
 }

@@ -1,4 +1,4 @@
-const SINGLETON_KEY = Symbol.for('harness-whale.instance')
+const SINGLETON_KEY = Symbol.for('harness-pet.instance')
 
 export interface DisposableWhale {
   dispose(): void

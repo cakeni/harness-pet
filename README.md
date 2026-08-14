@@ -7,7 +7,7 @@
 ![Harness Pet animation states](./assets/whale/whale-animation-v6-contact-sheet.png)
 
 ```sh
-dsh plugin --profile web add github:cakeni/harness-whale
+dsh plugin --profile web add github:cakeni/harness-pet
 ```
 
 [中文说明](./README.zh.md)
@@ -38,20 +38,20 @@ The package name is reserved for a future npm release. Until it is published,
 use the Git or local-link installation below.
 
 ```sh
-dsh plugin --profile web add harness-whale
+dsh plugin --profile web add harness-pet
 ```
 
 ### Git
 
 ```sh
-dsh plugin --profile web add github:cakeni/harness-whale
+dsh plugin --profile web add github:cakeni/harness-pet
 ```
 
 Git dependencies run this package's `prepare` build. If pnpm blocks that build, add the exact package key printed by the CLI to the profile's `pnpm-workspace.yaml`, for example:
 
 ```yaml
 allowBuilds:
-  harness-whale: true
+  harness-pet: true
 ```
 
 Then repeat the install command. The profile is normally under `$DSH_HOME/profiles/web`.
@@ -61,13 +61,13 @@ Then repeat the install command. The profile is normally under `$DSH_HOME/profil
 Run this from the repository's parent directory:
 
 ```sh
-dsh plugin --profile web add link:../harness-whale
+dsh plugin --profile web add link:../harness-pet
 ```
 
 Build and refresh during development:
 
 ```sh
-cd harness-whale
+cd harness-pet
 pnpm bundle
 ```
 
@@ -133,7 +133,7 @@ pnpm test
 pnpm bundle
 ```
 
-The bundle must start with a `window.__ModuleLoader__.load` registration for `harness-whale` and export `{ apply, inject }` from its factory.
+The bundle must start with a `window.__ModuleLoader__.load` registration for `harness-pet` and export `{ apply, inject }` from its factory.
 
 Automated tests cover the state mapper and priority, success transitions and timeout, unknown-signal degradation, corrupt storage, singleton reuse, and subscription/timer cleanup. Loading inside a real Harness page, drag behavior, visual animation, SPA navigation, and long-running leak checks still require manual browser verification.
 
@@ -141,8 +141,8 @@ Automated tests cover the state mapper and priority, success transitions and tim
 
 After installing and restarting `dsh web` yourself:
 
-1. Confirm `window.__DSH_BOOT__.entries` contains `harness-whale`.
-2. Confirm `/plugins/harness-whale/client.js` returns HTTP 200.
+1. Confirm `window.__DSH_BOOT__.entries` contains `harness-pet`.
+2. Confirm `/plugins/harness-pet/client.js` returns HTTP 200.
 3. Confirm the whale and its card render without console errors, the card shows the latest local prompt plus streaming/final reply, and every Debug State is distinct.
 4. Open the gray follow-up input, send a test message, and confirm it appears in the current Harness session; also verify an admission failure keeps the draft and shows an error.
 5. Test dragging, reload position persistence, enable/disable, size, opacity, and reset.
