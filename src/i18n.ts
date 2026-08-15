@@ -32,6 +32,7 @@ export interface UiCopy {
   desktopWindowFailed: string
   desktopWindowUnsupportedMessage: string
   desktopWindowOpenFailed: string
+  desktopWindowElectronMessage: string
   petLabel: string
   openSettings: string
   closeDialog: string
@@ -73,6 +74,7 @@ const COPY: Record<UiLanguage, UiCopy> = {
     desktopWindowFailed: 'Desktop window failed',
     desktopWindowUnsupportedMessage: 'This browser does not support the desktop window',
     desktopWindowOpenFailed: 'Unable to open the desktop window',
+    desktopWindowElectronMessage: 'Floating pet window is not available in this app: Electron does not implement Document Picture-in-Picture (electron/electron#39633)',
     petLabel: 'Harness Pet. Click to interact, double-click or long-press for settings.',
     openSettings: 'Open Harness Pet settings',
     closeDialog: 'Close dialog',
@@ -122,6 +124,7 @@ const COPY: Record<UiLanguage, UiCopy> = {
     desktopWindowFailed: '打开桌面小窗失败',
     desktopWindowUnsupportedMessage: '当前浏览器不支持桌面小窗',
     desktopWindowOpenFailed: '无法打开桌面小窗',
+    desktopWindowElectronMessage: '当前应用环境不支持独立宠物窗口：Electron 尚未实现 Document Picture-in-Picture（见 electron/electron#39633）',
     petLabel: 'Harness Pet。单击互动，双击或长按打开设置。',
     openSettings: '打开 Harness Pet 设置',
     closeDialog: '关闭对话框',
@@ -171,6 +174,7 @@ const COPY: Record<UiLanguage, UiCopy> = {
     desktopWindowFailed: 'デスクトップ小窓を開けませんでした',
     desktopWindowUnsupportedMessage: 'このブラウザはデスクトップ小窓に対応していません',
     desktopWindowOpenFailed: 'デスクトップ小窓を開けません',
+    desktopWindowElectronMessage: 'このアプリではフローティングペットウィンドウを利用できません：Electron は Document Picture-in-Picture を実装していません（electron/electron#39633）',
     petLabel: 'Harness Pet。クリックで反応、ダブルクリックまたは長押しで設定を開きます。',
     openSettings: 'Harness Pet の設定を開く',
     closeDialog: '会話を閉じる',
@@ -220,6 +224,7 @@ const COPY: Record<UiLanguage, UiCopy> = {
     desktopWindowFailed: '데스크톱 창을 열지 못했습니다',
     desktopWindowUnsupportedMessage: '현재 브라우저는 데스크톱 창을 지원하지 않습니다',
     desktopWindowOpenFailed: '데스크톱 창을 열 수 없습니다',
+    desktopWindowElectronMessage: '이 앱에서는 플로팅 펫 창을 사용할 수 없습니다: Electron이 Document Picture-in-Picture를 구현하지 않았습니다 (electron/electron#39633)',
     petLabel: 'Harness Pet. 클릭하면 반응하고, 두 번 클릭하거나 길게 누르면 설정이 열립니다.',
     openSettings: 'Harness Pet 설정 열기',
     closeDialog: '대화창 닫기',

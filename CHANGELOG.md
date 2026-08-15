@@ -2,6 +2,10 @@
 
 All notable changes to Harness Pet are documented here.
 
+## [Unreleased]
+
+- Fixed the floating pet window on Electron-based hosts (e.g. DSH Desktop): Electron does not implement Document Picture-in-Picture (electron/electron#39633), and hosts that deny new windows make `requestWindow()` reject with "Internal error: no window". The feature is now detected as unsupported in Electron and known rejections map to a friendly message in all four languages instead of raw engine text.
+
 ## [0.1.0] - 2026-08-14
 
 - Added a close control for the conversation card, a **Show Dialog** recovery action in settings, and per-session dismissal behavior.

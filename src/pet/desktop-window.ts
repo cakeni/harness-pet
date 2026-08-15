@@ -32,8 +32,20 @@ body { background: radial-gradient(circle at 50% 68%, rgba(231, 247, 253, .96), 
 .hw-panel { left: 12px !important; top: 12px !important; right: 12px !important; bottom: 12px !important; width: auto !important; max-height: calc(100vh - 24px); overflow: auto; }
 `
 
+// Electron does not implement Document Picture-in-Picture window creation
+// (https://github.com/electron/electron/issues/39633): requestWindow() either
+// resolves without a real window or — when the host app installs a window-open
+// handler that denies new windows (as DSH Desktop does) — rejects with
+// "Internal error: no window". Treat Electron environments as unsupported so
+// the settings panel shows friendly copy instead of the raw engine error.
+function isElectronScope(scope: Window): boolean {
+  const ua = scope.navigator?.userAgent ?? ''
+  return /Electron\//.test(ua)
+}
+
 export function supportsDesktopPetWindow(scope: Window = window): boolean {
   const candidate = scope as DesktopCapableWindow
+  if (isElectronScope(scope)) return false
   return scope.isSecureContext && typeof candidate.documentPictureInPicture?.requestWindow === 'function'
 }
 
@@ -89,9 +101,15 @@ export function createDesktopWindowController(options: {
       return { ok: true }
     } catch (error) {
       restore()
+      const raw = error instanceof Error && error.message ? error.message : ''
+      // Known failure modes: Electron does not implement the PiP window
+      // (electron/electron#39633), and host apps that deny new windows make
+      // requestWindow() reject with "Internal error: no window". Map them to
+      // friendly copy instead of leaking raw engine text to the user.
+      const unsupported = raw.includes('Internal error: no window') || raw.includes('Document PiP requires user activation')
       return {
         ok: false,
-        message: error instanceof Error && error.message ? error.message : copy.desktopWindowOpenFailed,
+        message: unsupported ? copy.desktopWindowElectronMessage : raw || copy.desktopWindowOpenFailed,
       }
     }
   }

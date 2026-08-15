@@ -63,4 +63,36 @@ describe('desktop pet window support', () => {
     expect(desktopWindow.close).toHaveBeenCalledOnce()
     expect(onStateChange).toHaveBeenLastCalledWith(false)
   })
+
+  it('treats Electron environments as unsupported (Document PiP not implemented)', () => {
+    expect(supportsDesktopPetWindow({
+      isSecureContext: true,
+      navigator: { userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Electron/43.4.0 Safari/537.36' },
+      documentPictureInPicture: { requestWindow: () => Promise.resolve({}) },
+    } as unknown as Window)).toBe(false)
+  })
+
+  it('maps the "Internal error: no window" rejection to friendly copy', async () => {
+    const sourceDocument: Record<string, unknown> = { documentElement: { lang: 'en-US' } }
+    sourceDocument.body = { append: vi.fn() }
+    const root = { ownerDocument: sourceDocument }
+    const scope = {
+      isSecureContext: true,
+      navigator: { userAgent: 'Mozilla/5.0 Chrome/120.0' },
+      document: sourceDocument,
+      documentPictureInPicture: {
+        window: null,
+        requestWindow: vi.fn().mockRejectedValue(new Error("Failed to execute 'requestWindow' on 'DocumentPictureInPicture': Internal error: no window")),
+      },
+    } as unknown as Window
+    const controller = createDesktopWindowController({
+      scope,
+      root: root as unknown as HTMLElement,
+      style: { textContent: '.pet {}' } as HTMLStyleElement,
+      onStateChange: vi.fn(),
+    })
+    const result = await controller.toggle()
+    expect(result.ok).toBe(false)
+    expect(result.message).toBe('Floating pet window is not available in this app: Electron does not implement Document Picture-in-Picture (electron/electron#39633)')
+  })
 })
